@@ -1,0 +1,5 @@
+service : {
+  getBalance: () -> (nat);
+  topUp: (nat) -> (nat);
+  withdraw: (nat) -> (nat);
+}
