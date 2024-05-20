@@ -1,5 +1,6 @@
 service : {
-  getBalance: () -> (nat);
+  getBalance: () -> (nat) query;
+  getTime: () -> (int) query;
   topUp: (nat) -> (nat);
   withdraw: (nat) -> (nat);
 }

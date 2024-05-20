@@ -1,10 +1,12 @@
 import Debug "mo:base/Debug";
+import Time "mo:base/Time";
 actor DBank {
   // create variable currentValue
-  var currentValue = 3000;
+  stable var currentValue = 3000;
 
   // create constant id
   let id = "SKM909090";
+  var time = Time.now();
 
   // create function topUp to increase currentValue
   public func topUp(amount : Nat) : async Nat {
@@ -25,8 +27,13 @@ actor DBank {
     return currentValue;
   };
 
-  public func getBalance() : async Nat {
+  public query func getBalance() : async Nat {
     return currentValue;
+  };
+
+  public query func getTime() : async Int {
+    Debug.print(debug_show (time));
+    return time;
   };
 
 };
