@@ -4,24 +4,25 @@ import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 import {dkeeper} from '../../../declarations/dkeeper'
+import { TNote } from "../types";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState<Array<TNote>>([]);
 
-  function addNote(newNote) {
+  function addNote(newNote: TNote) {
     setNotes(prevNotes => {
-      dkeeper.createNote(newNote.title,newNote.content);
+      dkeeper.createNote(newNote.title, newNote.content || '');
       return [newNote, ...prevNotes];
     });
   }
 
-  function deleteNote(id) {
+  function deleteNote(id: number) {
     setNotes(prevNotes => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
     });
-    dkeeper.deleteNote(id);
+    dkeeper.deleteNote(id as unknown as bigint);
   }
 
   useEffect(()=>{

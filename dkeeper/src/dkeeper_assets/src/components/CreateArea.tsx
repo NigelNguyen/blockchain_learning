@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Zoom from "@material-ui/core/Zoom";
+import { TNote } from "../types";
 
-function CreateArea(props) {
+function CreateArea(props:{onAdd: (note: TNote)=>void}) {
   const [isExpanded, setExpanded] = useState(false);
 
   const [note, setNote] = useState({
@@ -11,7 +12,7 @@ function CreateArea(props) {
     content: ""
   });
 
-  function handleChange(event) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
 
     setNote(prevNote => {
@@ -22,7 +23,7 @@ function CreateArea(props) {
     });
   }
 
-  function submitNote(event) {
+  function submitNote(event: React.MouseEvent) {
     props.onAdd(note);
     setNote({
       title: "",
